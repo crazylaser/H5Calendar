@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+    <link rel="shortcut icon" href="images/calendar.ico">
+    <script src='js/jquery.min.js'></script>
+    <script src='js/moment.min.js'></script>
+    <script src='js/jquery-ui.min.js'></script>
+    <link href='css/fullcalendar.css' rel='stylesheet'/>
+    <!--<link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />-->
+    <link href='css/fancybox.css' rel='stylesheet' media='print' />
+    <script src='js/fullcalendar.js'></script>
+    <script src='js/properDB.js'></script>
+    <link rel="stylesheet" href="css/common.css"/><!-- 基本样式 -->
+    <script>
+        createSql = 'CREATE TABLE "calendar" ( 	"id" INTEGER NOT NULL, 	"title" TEXT, 	"starttime" TEXT, 	"endtime" TEXT, 	"allday" INTEGER DEFAULT 0, 	"isdone" INTEGER DEFAULT 0, 	"color" TEXT DEFAULT NULL, 	PRIMARY KEY ("id" ASC) )'
+        t=new properDB().getTable("calendar",createSql);
+//        t=new properDB().getTable("calendar");
+    </script>
+</head>
+<body>
+  <div id='calendar'></div>
+  <div class="box">
+      <div class="demo">
+      <a href="javascript:;" class="demo0" style="display:none" >带标题的</a>
+      <a href="javascript:;" class="demo1" style="display:none" >带标题的</a>
+  </div>
+
+  <!-- demo end -->
+  <!-- 注意：请将要放入弹框的内容放在比如id="HBox"的容器中，然后将box的值换成该ID即可，比如：$(element).hDialog({'box':'#HBox'}); -->
+  <div id="HBox">
+      <form>
+          <ul class="list">
+              <li>
+                  <strong>日程内容</strong>
+                  <div class="fl">
+                      <input type="text" name="nickname" value="" class="ipt nickname"  id="titleInput"/>
+                  </div>
+              </li>
+              <li id="startli" style="display:none">
+                  <strong>开始时间</strong>
+                  <div class="fl">
+                      <input type="text" name="nickname" value="" class="ipt nickname" id="startTimeInput"/>
+                  </div>
+              </li>
+              <li id="endli" style="display:none">
+                  <strong>结束时间</strong>
+                  <div class="fl">
+                      <input type="text" name="nickname" value="" class="ipt nickname" id="endTimeInput"/>
+                  </div>
+              </li>
+              <li>
+                  <label class="mr10"><input type="checkbox" name="like" value="true" id="allDayCheck" checked= "checked" />全天</label>
+                  <label class="mr10" id="repeatLable"><input type="checkbox" name="like" value="true" id="remberCheck"/>重复</label>
+              </li>
+              <li id="repeat" style="display:none">
+                  <select option="repeatSelect" id="repeatSelect">
+                      <option value="day">每日</option>
+                      <option value="week">每周</option>
+                      <option value="month">每月</option>
+                      <option value="rember">记忆</option>
+                  </select>
+                      <div style="display:inline;font-weight: bold;width:30%;margin-right:10px;text-align: right;">限定次数</div>
+                      <input type="text" value="" id="times" style="display:inline;width:40%;text-indent:5px;border:1px solid #ccc;box-shadow:0 0 3px #ddd inset;-webkit-box-shadow:0 0 3px #ddd inset;"/>
+              </li>
+              <li>
+                  <input type="button" value="删除" class="delBtn" id="delBtn"/>
+                  <input type="button" value="完成" class="completeBtn" id="completeBtn"/>
+                  <input type="button" value="确认" class="submitBtn" id="submitBtn"/>
+              </li>
+          </ul>
+      </form>
+  </div><!-- HBox end -->
+  </div><!-- box end -->
+
+  <script src='js/mycalendar1.js'></script>
+  <script src="js/jquery.hDialog.js"></script>
+</body>
+</html>
